@@ -50,8 +50,14 @@ Raw bounding boxes are the easy part. This project converts detections into a do
 
 The per-class results don't follow a simple "more training data = higher AP" pattern. Fixed Obstacle has the most training instances of any class (~2,600) but still lands near the bottom on mAP50-95, most likely because the label covers visually inconsistent things. Two Wheeler is the single weakest class despite not being the smallest, which points more toward small-object size and heavy occlusion in dense traffic than toward data volume. The confusion matrix backs this up — Two Wheeler and Vikram both show meaningful "background" misses (0.18–0.22), meaning the model outright misses them in some frames rather than confusing them with another vehicle class.
 
-![Analysis Grid](assets/analysis_grid.png)
-*Class distribution, hyperparameter comparison, data volume vs. accuracy, and precision/recall per class.*
+![Confusion Matrix](assets/confusion_matrix.png)
+*Row-normalized: diagonal = correct classifications. Two Wheeler (0.75) and Vikram (0.76) show the most confusion with "background" — the model misses them outright in some frames rather than confusing them with another vehicle class.*
+
+![Precision-Recall Curve](assets/BoxPR_curve.png)
+*Per-class precision-recall curves. Bus and Truck sit closest to the top-right corner (best); Two Wheeler and Modified trail.*
+
+![Training Curves](assets/results.png)
+*Loss and mAP over the full training run.*
 
 ## Stack
 
